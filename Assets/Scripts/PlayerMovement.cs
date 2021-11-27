@@ -16,9 +16,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float _groundDistance = .4f;
     [SerializeField] LayerMask _groundMask;
 
-    [Header("Visuals")]
-    [SerializeField] float _normalFov = 90f;
-
     CharacterController _controller;
     Vector3 _velocity;
     bool _isGrounded;

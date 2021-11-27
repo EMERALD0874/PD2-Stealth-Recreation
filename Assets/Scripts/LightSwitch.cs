@@ -1,0 +1,46 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class LightSwitch : Interactable
+{
+    [SerializeField] Light m_Light;
+
+    bool isOn;
+
+    public override float TimeNeeded
+    {
+        get
+        {
+            return 1f;
+        }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        isOn = true;
+        UpdateLight();
+    }
+
+    public override string GetDescription()
+    {
+        return "Hold [F] to turn the lights off";
+    }
+
+    public override void Interact()
+    {
+        isOn = !isOn;
+        UpdateLight();
+
+        Destroy(this);
+    }
+
+    void UpdateLight()
+    {
+        m_Light.enabled = isOn;
+    }
+
+    public override void StartHolding() { Debug.Log("Started holding light"); }
+    public override void CancelHolding() { Debug.Log("Cancelled holding light");  }
+}
