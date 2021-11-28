@@ -11,12 +11,16 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] GameObject progressUI;
     [SerializeField] Image progress;
 
+    MouseLook mouseLook;
     Camera cam;
+    float camSens;
 
     // Start is called before the first frame update
     void Start()
     {
+        mouseLook = GetComponent<MouseLook>();
         cam = GetComponent<Camera>();
+        camSens = mouseLook._mouseSens;
     }
 
     // Update is called once per frame
@@ -64,7 +68,10 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     // If we haven't held down the button at all, say we're starting
                     if (i.GetHoldTime() == 0)
+                    {
                         i.StartHolding();
+                        mouseLook._mouseSens = 0f;
+                    }
 
                     // Increase time
                     i.IncreaseHoldTime();
@@ -74,12 +81,16 @@ public class PlayerInteraction : MonoBehaviour
                     {
                         i.Interact();
                         i.ResetHoldTime();
+                        mouseLook._mouseSens = camSens;
                     }
                 }
                 else
                 {
                     if (i.GetHoldTime() != 0)
+                    {
                         i.CancelHolding();
+                        mouseLook._mouseSens = camSens;
+                    }
                     i.ResetHoldTime();
                 }
                 progress.fillAmount = i.GetHoldTime()/i.TimeNeeded;
