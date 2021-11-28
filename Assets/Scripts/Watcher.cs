@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class Watcher : MonoBehaviour
 {
+    [Header("View")]
     [SerializeField] float viewDistance = 7.5f;
     [SerializeField] float viewDistanceMinFalloff = 1f;
     [SerializeField] float viewAngle;
     [SerializeField] LayerMask mask;
+
+    [Header("Detection")]
     [SerializeField] float detectionRate = .5f;
     [SerializeField] float minDetection = .25f;
     [SerializeField] float falloffRate = .2f;
 
+    [Header("Visualization")]
+    [SerializeField] GameObject indicator;
+    [SerializeField] Sprite suspicious;
+    [SerializeField] Sprite detected;
+
+    SpriteRenderer indicatorRenderer;
     Transform player;
     PlayerDetection detection;
     float sus;
@@ -22,9 +31,12 @@ public class Watcher : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         detection = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDetection>();
+        indicatorRenderer = indicator.GetComponent<SpriteRenderer>();
         sus = 0f;
 
         alert = false;
+        indicatorRenderer.sprite = suspicious;
+        indicator.SetActive(false);
     }
     
     void LateUpdate()
@@ -38,7 +50,10 @@ public class Watcher : MonoBehaviour
         if (CanSeePlayer())
         {
             if (sus == 0f)
+            {
                 detection.NewSuspicion();
+                indicator.SetActive(true);
+            }
             float susRatio = Mathf.Clamp(Vector3.Distance(transform.position, player.position) - viewDistanceMinFalloff, 0f, viewDistance - viewDistanceMinFalloff) / (viewDistance - viewDistanceMinFalloff);
             susRatio = Mathf.Clamp(-susRatio + 1, minDetection, 1f); // We do this to invert the ratio so closer means quicker
             sus += susRatio * detectionRate * Time.deltaTime;
@@ -46,6 +61,8 @@ public class Watcher : MonoBehaviour
         else
         {
             sus -= falloffRate * Time.deltaTime;
+            if (sus <= 0f)
+                indicator.SetActive(false);
         }
 
         sus = Mathf.Clamp(sus, 0f, 1f);
@@ -55,6 +72,7 @@ public class Watcher : MonoBehaviour
         {
             alert = true;
             detection.Detected();
+            indicatorRenderer.sprite = detected;
         }
     }
     
