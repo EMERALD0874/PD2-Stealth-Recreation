@@ -104,6 +104,11 @@ public class Guard : MonoBehaviour
         }
     }
 
+    public void Death()
+    {
+        Destroy(this);
+    }
+
     private void OnDrawGizmosSelected()
     {
         foreach (Transform waypoint in waypointParent)

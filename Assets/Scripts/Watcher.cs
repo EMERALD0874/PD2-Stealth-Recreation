@@ -104,6 +104,13 @@ public class Watcher : MonoBehaviour
         sus = 100f;
     }
 
+    public void Death()
+    {
+        sus = 0f;
+        indicator.SetActive(false);
+        Destroy(this);
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
