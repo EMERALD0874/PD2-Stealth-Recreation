@@ -20,6 +20,9 @@ public class Watcher : MonoBehaviour
     [SerializeField] Sprite suspicious;
     [SerializeField] Sprite detected;
 
+    [Header("Other")]
+    [SerializeField] Guard guard;
+
     SpriteRenderer indicatorRenderer;
     Transform player;
     PlayerDetection detection;
@@ -73,6 +76,9 @@ public class Watcher : MonoBehaviour
             alert = true;
             detection.Detected();
             indicatorRenderer.sprite = detected;
+
+            if (guard != null)
+                guard.Alert();
         }
     }
     
