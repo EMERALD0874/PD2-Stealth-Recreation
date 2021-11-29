@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DeathManager : MonoBehaviour
 {
+    [Header("Feedback")]
+    [SerializeField] AudioClip deathSound;
     [Header("Other Scripts")]
     [SerializeField] Guard guard;
     [SerializeField] Watcher watcher;
@@ -34,6 +36,7 @@ public class DeathManager : MonoBehaviour
         guard.Death();
         watcher.Death();
 
+        AudioSource.PlayClipAtPoint(deathSound, transform.position, .5f);
         SetRagdoll(true);
     }
 

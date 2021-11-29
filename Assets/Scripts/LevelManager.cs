@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] MouseLook mouseLook;
+    [SerializeField] Gun gun;
     
     private void Awake()
     {
@@ -36,5 +37,6 @@ public class LevelManager : MonoBehaviour
     {
         playerMovement.SetMovement(false);
         mouseLook._mouseSens = 0f;
+        gun.canFire = false;
     }
 }

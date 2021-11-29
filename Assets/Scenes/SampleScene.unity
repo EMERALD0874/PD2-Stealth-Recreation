@@ -5775,13 +5775,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a25c266ad0461a0419da88a4f6c18e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firerate: 0.2
+  firerate: 0.1
   range: 100
   mask:
     serializedVersion: 2
     m_Bits: 1843
   muzzleFlash: {fileID: 71493647}
   fireSound: {fileID: 8300000, guid: 2ecebbd2dc121fa46a05932ea2450645, type: 3}
+  canFire: 1
 --- !u!82 &245024803
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7894,6 +7895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 1083382151}
   mouseLook: {fileID: 963194229}
+  gun: {fileID: 245024802}
 --- !u!1 &1599897824
 GameObject:
   m_ObjectHideFlags: 0
@@ -9551,6 +9553,10 @@ PrefabInstance:
       propertyPath: bumpDetection
       value: 
       objectReference: {fileID: 475887937}
+    - target: {fileID: 1372281890, guid: 585dff9b495381447b44d7e37fcd93ee, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e6ebdff788d91984fb565612b93cd8e8, type: 3}
     - target: {fileID: 210776954824278250, guid: 585dff9b495381447b44d7e37fcd93ee,
         type: 3}
       propertyPath: m_Name

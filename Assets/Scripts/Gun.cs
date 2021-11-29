@@ -5,7 +5,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     [Header("Functionality")]
-    [SerializeField] float firerate = .2f;
+    [SerializeField] float firerate = .1f;
     [SerializeField] float range = 100f;
     [SerializeField] LayerMask mask;
     [Header("Feedback")]
@@ -15,6 +15,8 @@ public class Gun : MonoBehaviour
     Camera cam;
     AudioSource src;
     float nextFire = 0f;
+
+    public bool canFire = true;
 
     private void Start()
     {
@@ -33,7 +35,11 @@ public class Gun : MonoBehaviour
 
     void Shoot()
     {
+        if (!canFire)
+            return;
+
         muzzleFlash.Play();
+        src.pitch = Random.Range(.9f, 1.1f);
         src.PlayOneShot(fireSound);
 
         RaycastHit hit;
