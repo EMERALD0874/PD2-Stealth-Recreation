@@ -945,6 +945,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 892626293799b3c45b282291de717786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &475887934 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5607629692622673289, guid: 585dff9b495381447b44d7e37fcd93ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 5607629692585962969}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &475887937
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475887934}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.6
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!1 &502483271
 GameObject:
   m_ObjectHideFlags: 0
@@ -2155,6 +2175,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 2.2}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1203483777 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5607629692878636504, guid: 585dff9b495381447b44d7e37fcd93ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 5607629692585962969}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e2925adba86234db10a85fb54b6715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1282393093
 GameObject:
   m_ObjectHideFlags: 0
@@ -2248,6 +2280,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282393093}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1372281886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5607629692186074956, guid: 585dff9b495381447b44d7e37fcd93ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 5607629692585962969}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1372281889
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372281886}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!1 &1398775664
 GameObject:
   m_ObjectHideFlags: 0
@@ -3843,6 +3895,16 @@ PrefabInstance:
         type: 3}
       propertyPath: walkSpeed
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607629692622673288, guid: 585dff9b495381447b44d7e37fcd93ee,
+        type: 3}
+      propertyPath: watcher
+      value: 
+      objectReference: {fileID: 1203483777}
+    - target: {fileID: 5607629692622673289, guid: 585dff9b495381447b44d7e37fcd93ee,
+        type: 3}
+      propertyPath: m_TagString
+      value: Guard
       objectReference: {fileID: 0}
     - target: {fileID: 9172095648661699888, guid: 585dff9b495381447b44d7e37fcd93ee,
         type: 3}

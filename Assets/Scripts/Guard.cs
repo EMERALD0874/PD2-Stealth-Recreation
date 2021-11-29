@@ -14,21 +14,36 @@ public class Guard : MonoBehaviour
     [Header("Waypoints")]
     [SerializeField] Transform waypointParent;
     [SerializeField] Waypoint startingWaypoint;
+    [Header("Other Components")]
+    [SerializeField] Watcher watcher;
 
     bool alert;
+    GameObject player;
 
     private void Start()
     {
         alert = false;
         animator.SetBool("IsAlerted", alert);
+        player = GameObject.FindGameObjectWithTag("Player");
 
         StartCoroutine(Patrol(startingWaypoint));
+    }
+
+    private void Update()
+    {
+        if (alert)
+        {
+            Vector3 playerPos = player.transform.position;
+            transform.LookAt(new Vector3(playerPos.x, transform.position.y, playerPos.z));
+            transform.rotation *= Quaternion.Euler(0, 45, 0);
+        }
     }
 
     public void Alert()
     {
         alert = true;
         animator.SetBool("IsAlerted", alert);
+        watcher.InstantAlert();
     }
 
     IEnumerator Patrol(Waypoint w)

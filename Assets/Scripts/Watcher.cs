@@ -75,6 +75,7 @@ public class Watcher : MonoBehaviour
         {
             alert = true;
             detection.Detected();
+            indicator.SetActive(true);
             indicatorRenderer.sprite = detected;
 
             if (guard != null)
@@ -94,6 +95,11 @@ public class Watcher : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void InstantAlert()
+    {
+        sus = 100f;
     }
 
     private void OnDrawGizmos()

@@ -61,4 +61,14 @@ public class PlayerMovement : MonoBehaviour
         _velocity.y += _gravity * Time.deltaTime;
         _controller.Move(_velocity * Time.deltaTime);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Guard")
+        {
+            Guard g = other.GetComponent<Guard>();
+            if (g != null)
+                g.Alert();
+        }
+    }
 }
