@@ -70,7 +70,7 @@ public class PlayerInteraction : MonoBehaviour
                     if (i.GetHoldTime() == 0)
                     {
                         i.StartHolding();
-                        mouseLook._mouseSens = 0f;
+                        LevelManager.Instance.StopPlayerMovement();
                     }
 
                     // Increase time
@@ -81,7 +81,7 @@ public class PlayerInteraction : MonoBehaviour
                     {
                         i.Interact();
                         i.ResetHoldTime();
-                        mouseLook._mouseSens = camSens;
+                        LevelManager.Instance.StartPlayerMovement();
                     }
                 }
                 else
@@ -89,7 +89,7 @@ public class PlayerInteraction : MonoBehaviour
                     if (i.GetHoldTime() != 0)
                     {
                         i.CancelHolding();
-                        mouseLook._mouseSens = camSens;
+                        LevelManager.Instance.StartPlayerMovement();
                     }
                     i.ResetHoldTime();
                 }

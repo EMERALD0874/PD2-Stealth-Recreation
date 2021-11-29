@@ -6,6 +6,7 @@ public class DeathManager : MonoBehaviour
 {
     [Header("Pager and Feedback")]
     [SerializeField] AudioClip deathSound;
+    [SerializeField] AudioClip pagerActiveSound;
     [SerializeField] float timeBeforePagerMin = 1f;
     [SerializeField] float timeBeforePagerMax = 2.5f;
     [Header("Other Scripts")]
@@ -60,6 +61,7 @@ public class DeathManager : MonoBehaviour
     {
         yield return new WaitForSeconds(Random.Range(timeBeforePagerMin, timeBeforePagerMax));
 
+        AudioSource.PlayClipAtPoint(pagerActiveSound, transform.position, 1f);
         Debug.Log("Add pager code here");
 
         yield return null;

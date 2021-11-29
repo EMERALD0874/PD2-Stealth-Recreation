@@ -12,6 +12,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] MouseLook mouseLook;
     [SerializeField] Gun gun;
+
+    float mouseSens;
+    bool gameOver;
     
     private void Awake()
     {
@@ -23,6 +26,9 @@ public class LevelManager : MonoBehaviour
         {
             _instance = this;
         }
+
+        mouseSens = mouseLook._mouseSens;
+        gameOver = false;
     }
 
     void Update()
@@ -31,6 +37,22 @@ public class LevelManager : MonoBehaviour
             SceneManager.LoadScene(0);
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
+    }
+
+    public void GameOver()
+    {
+        gameOver = true;
+        StopPlayerMovement();
+    }
+
+    public void StartPlayerMovement()
+    {
+        if (gameOver)
+            return;
+
+        playerMovement.SetMovement(true);
+        mouseLook._mouseSens = mouseSens;
+        gun.canFire = true;
     }
 
     public void StopPlayerMovement()
