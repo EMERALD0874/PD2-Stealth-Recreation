@@ -5782,6 +5782,8 @@ MonoBehaviour:
     m_Bits: 1843
   muzzleFlash: {fileID: 71493647}
   fireSound: {fileID: 8300000, guid: 2ecebbd2dc121fa46a05932ea2450645, type: 3}
+  bloodSpray: {fileID: 1136459062662257607, guid: 5f89d9b707b8a6e4398e425c79ffec23,
+    type: 3}
   canFire: 1
 --- !u!82 &245024803
 AudioSource:

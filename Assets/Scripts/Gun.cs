@@ -11,6 +11,7 @@ public class Gun : MonoBehaviour
     [Header("Feedback")]
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] AudioClip fireSound;
+    [SerializeField] GameObject bloodSpray;
 
     Camera cam;
     AudioSource src;
@@ -49,6 +50,7 @@ public class Gun : MonoBehaviour
             if (dm != null)
             {
                 dm.Death();
+                Instantiate(bloodSpray, hit.point, Quaternion.Euler(0, 0, 0));
             }
         }
     }
