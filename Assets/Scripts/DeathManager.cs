@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class DeathManager : MonoBehaviour
 {
-    [Header("Feedback")]
+    [Header("Pager and Feedback")]
     [SerializeField] AudioClip deathSound;
+    [SerializeField] float timeBeforePagerMin = 1f;
+    [SerializeField] float timeBeforePagerMax = 2.5f;
     [Header("Other Scripts")]
     [SerializeField] Guard guard;
     [SerializeField] Watcher watcher;
@@ -38,6 +40,8 @@ public class DeathManager : MonoBehaviour
 
         AudioSource.PlayClipAtPoint(deathSound, transform.position, .5f);
         SetRagdoll(true);
+
+        StartCoroutine(PagerSystem());
     }
 
     void SetRagdoll(bool enabled)
@@ -50,5 +54,14 @@ public class DeathManager : MonoBehaviour
             rb.isKinematic = !enabled;
 
         col.enabled = !enabled;
+    }
+
+    IEnumerator PagerSystem()
+    {
+        yield return new WaitForSeconds(Random.Range(timeBeforePagerMin, timeBeforePagerMax));
+
+        Debug.Log("Add pager code here");
+
+        yield return null;
     }
 }
