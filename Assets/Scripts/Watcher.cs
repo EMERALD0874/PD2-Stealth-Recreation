@@ -80,6 +80,8 @@ public class Watcher : MonoBehaviour
 
             if (guard != null)
                 guard.Alert();
+
+            LevelManager.Instance.StopPlayerMovement();
         }
     }
     

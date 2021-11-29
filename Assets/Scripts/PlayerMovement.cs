@@ -62,6 +62,11 @@ public class PlayerMovement : MonoBehaviour
         _controller.Move(_velocity * Time.deltaTime);
     }
 
+    public void SetMovement (bool b)
+    {
+        _canMove = b;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Guard")
