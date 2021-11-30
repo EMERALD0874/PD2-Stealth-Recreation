@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Gun gun;
 
     float mouseSens;
-    bool gameOver;
+    public bool gameOver;
     string reason;
     
     private void Awake()

@@ -35,7 +35,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             Interactable i = hit.collider.GetComponent<Interactable>();
 
-            if (i != null)
+            if (i != null && i.enabled == true)
             {
                 HandleInteraction(i);
                 prompt.text = i.GetDescription();

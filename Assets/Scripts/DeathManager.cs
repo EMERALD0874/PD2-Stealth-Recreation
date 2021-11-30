@@ -9,6 +9,7 @@ public class DeathManager : MonoBehaviour
     [SerializeField] AudioClip pagerActiveSound;
     [SerializeField] float timeBeforePagerMin = 1f;
     [SerializeField] float timeBeforePagerMax = 2.5f;
+    [SerializeField] AudioClip[] controlSounds;
     [Header("Other Scripts")]
     [SerializeField] Guard guard;
     [SerializeField] Watcher watcher;
@@ -16,6 +17,7 @@ public class DeathManager : MonoBehaviour
     [SerializeField] CapsuleCollider bumpDetection;
     [Header("Enable on Death")]
     [SerializeField] GameObject ragdollParent;
+    [SerializeField] Pager pager;
 
     Collider[] ragdollColliders;
     Rigidbody[] ragdollRbs;
@@ -33,6 +35,7 @@ public class DeathManager : MonoBehaviour
         anim = GetComponent<Animator>();
         col = GetComponent<Collider>();
 
+        pager.enabled = false;
         SetRagdoll(false);
     }
 
@@ -63,10 +66,13 @@ public class DeathManager : MonoBehaviour
     {
         yield return new WaitForSeconds(Random.Range(timeBeforePagerMin, timeBeforePagerMax));
 
-        AudioSource.PlayClipAtPoint(pagerActiveSound, transform.position, 1f);
-        Debug.Log("Add pager code here");
+        AudioSource.PlayClipAtPoint(pagerActiveSound, transform.position, .5f);
+        AudioClip control = controlSounds[Random.Range(0, controlSounds.Length)];
+        AudioSource.PlayClipAtPoint(control, transform.position, 1f);
+        pager.enabled = true;
         yield return new WaitForSeconds(12f);
-        LevelManager.Instance.GameOver();
+        if (!isAnswering && !LevelManager.Instance.gameOver)
+            LevelManager.Instance.GameOver("Alarm tripped: Pager operator didn't receive an answer");
 
         yield return null;
     }

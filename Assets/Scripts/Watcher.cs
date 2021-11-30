@@ -28,6 +28,7 @@ public class Watcher : MonoBehaviour
     PlayerDetection detection;
     float sus;
     bool alert;
+    string reason = "suspicious activity";
 
     // Start is called before the first frame update
     void Start()
@@ -81,7 +82,11 @@ public class Watcher : MonoBehaviour
             if (guard != null)
                 guard.Alert();
 
-            LevelManager.Instance.GameOver("Alarm tripped: " + guard!=null ? "Police" : "Camera" + "detected suspicious activity");
+            if (CanSeePlayer() || Vector3.Distance(transform.position, player.position) < 1f)
+                reason = "a criminal";
+
+            string watcherType = guard != null ? "Police" : "Camera";
+            LevelManager.Instance.GameOver("Alarm tripped: " + watcherType + " detected " + reason);
         }
     }
     
