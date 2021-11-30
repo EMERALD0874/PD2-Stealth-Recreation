@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
 
     float mouseSens;
     bool gameOver;
+    string reason;
     
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class LevelManager : MonoBehaviour
 
         mouseSens = mouseLook._mouseSens;
         gameOver = false;
+        reason = "ERR Unknown Reason";
     }
 
     void Update()
@@ -39,10 +41,13 @@ public class LevelManager : MonoBehaviour
             Application.Quit();
     }
 
-    public void GameOver()
+    public void GameOver(string r)
     {
+        reason = r;
         gameOver = true;
         StopPlayerMovement();
+
+        Debug.Log(reason);
     }
 
     public void StartPlayerMovement()

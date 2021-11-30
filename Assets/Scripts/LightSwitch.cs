@@ -41,6 +41,6 @@ public class LightSwitch : Interactable
         m_Light.enabled = isOn;
     }
 
-    public override void StartHolding() { Debug.Log("Started holding light"); }
-    public override void CancelHolding() { Debug.Log("Cancelled holding light");  }
+    public override void StartHolding() {}
+    public override void CancelHolding() {}
 }

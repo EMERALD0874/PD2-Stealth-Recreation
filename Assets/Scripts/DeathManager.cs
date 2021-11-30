@@ -23,6 +23,8 @@ public class DeathManager : MonoBehaviour
     Animator anim;
     Collider col;
 
+    public bool isAnswering = false;
+
     private void Start()
     {
         ragdollColliders = ragdollParent.GetComponentsInChildren<Collider>();
@@ -63,6 +65,8 @@ public class DeathManager : MonoBehaviour
 
         AudioSource.PlayClipAtPoint(pagerActiveSound, transform.position, 1f);
         Debug.Log("Add pager code here");
+        yield return new WaitForSeconds(12f);
+        LevelManager.Instance.GameOver();
 
         yield return null;
     }

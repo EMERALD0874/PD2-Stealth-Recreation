@@ -81,7 +81,7 @@ public class Watcher : MonoBehaviour
             if (guard != null)
                 guard.Alert();
 
-            LevelManager.Instance.GameOver();
+            LevelManager.Instance.GameOver("Alarm tripped: " + guard!=null ? "Police" : "Camera" + "detected suspicious activity");
         }
     }
     
