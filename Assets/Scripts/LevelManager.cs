@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] MouseLook mouseLook;
     [SerializeField] Gun gun;
+    [SerializeField] AudioSource alarm;
 
     float mouseSens;
     public bool gameOver;
@@ -47,6 +48,7 @@ public class LevelManager : MonoBehaviour
         gameOver = true;
         StopPlayerMovement();
 
+        alarm.Play();
         Debug.Log(reason);
     }
 

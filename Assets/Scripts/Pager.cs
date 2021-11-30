@@ -7,6 +7,7 @@ public class Pager : Interactable
     [SerializeField] DeathManager dm;
     [SerializeField] AudioClip[] pagerResponses;
     [SerializeField] AudioClip[] controlResponses;
+    [SerializeField] GameObject indicator;
 
     AudioSource src;
     bool answered = false;
@@ -14,6 +15,7 @@ public class Pager : Interactable
     private void Start()
     {
         src = GetComponent<AudioSource>();
+        indicator.SetActive(true);
     }
 
     public override float TimeNeeded
@@ -26,6 +28,7 @@ public class Pager : Interactable
 
     public override void CancelHolding()
     {
+        indicator.SetActive(false);
         if (!answered)
             LevelManager.Instance.GameOver("Alarm tripped: Criminal disconnected from the call");
         enabled = false;
@@ -53,5 +56,7 @@ public class Pager : Interactable
         src.spatialBlend = 0f;
         src.Play();
         dm.isAnswering = true;
+
+        indicator.SetActive(false);
     }
 }
