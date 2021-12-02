@@ -13,6 +13,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] MouseLook mouseLook;
     [SerializeField] Gun gun;
     [SerializeField] AudioSource alarm;
+    [SerializeField] GameObject gameOverPanel;
+    [SerializeField] TMPro.TextMeshProUGUI gameOverText;
 
     float mouseSens;
     public bool gameOver;
@@ -31,6 +33,7 @@ public class LevelManager : MonoBehaviour
 
         mouseSens = mouseLook._mouseSens;
         gameOver = false;
+        gameOverPanel.SetActive(false);
         reason = "ERR Unknown Reason";
     }
 
@@ -49,7 +52,8 @@ public class LevelManager : MonoBehaviour
         StopPlayerMovement();
 
         alarm.Play();
-        Debug.Log(reason);
+        gameOverPanel.SetActive(true);
+        gameOverText.text = reason;
     }
 
     public void StartPlayerMovement()
