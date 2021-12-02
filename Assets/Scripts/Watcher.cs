@@ -15,10 +15,13 @@ public class Watcher : MonoBehaviour
     [SerializeField] float minDetection = .25f;
     [SerializeField] float falloffRate = .2f;
 
-    [Header("Visualization")]
+    [Header("Feedback")]
     [SerializeField] GameObject indicator;
     [SerializeField] Sprite suspicious;
     [SerializeField] Sprite detected;
+    [SerializeField] Sprite calling;
+    [SerializeField] AudioClip alertSfx;
+    [SerializeField] AudioClip callingSfx;
 
     [Header("Other")]
     [SerializeField] Guard guard;
@@ -85,8 +88,12 @@ public class Watcher : MonoBehaviour
             if (CanSeePlayer() || Vector3.Distance(transform.position, player.position) < 1f)
                 reason = "a criminal";
 
+            if (alertSfx)
+                AudioSource.PlayClipAtPoint(alertSfx, transform.position, 1f);
+
             string watcherType = guard != null ? "Police" : "Camera";
-            LevelManager.Instance.GameOver("Alarm tripped: " + watcherType + " detected " + reason);
+            //LevelManager.Instance.GameOver("Alarm tripped: " + watcherType + " detected " + reason);
+            StartCoroutine(Call(watcherType));
         }
     }
     
@@ -120,5 +127,20 @@ public class Watcher : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, transform.forward * viewDistance);
+    }
+
+    IEnumerator Call(string type)
+    {
+        // Just alerted, wait before calling
+        yield return new WaitForSeconds(5f);
+        // Final warning to player
+        if (callingSfx)
+            AudioSource.PlayClipAtPoint(callingSfx, transform.position, 1f);
+        indicatorRenderer.sprite = calling;
+        yield return new WaitForSeconds(3f);
+        // GG you lost
+        indicator.SetActive(false);
+        LevelManager.Instance.GameOver("Alarm tripped: " + type + " detected " + reason);
+        yield return null;
     }
 }
