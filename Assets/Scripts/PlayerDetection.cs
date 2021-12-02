@@ -61,7 +61,7 @@ public class PlayerDetection : MonoBehaviour
             leftMeter.fillAmount = meterFilled;
             rightMeter.fillAmount = meterFilled;
 
-            int alpha = (int) Mathf.Clamp(((sus * 2) - 1) * 255, 0f, 255f);
+            int alpha = (int) Mathf.Clamp(((sus * 2) - 1) * 100, 0f, 100f);
             string alphaStr = alpha.ToString("X8");
             exclamationMark.text = "<alpha=#" + alphaStr.Substring(6) + ">!";
         }
