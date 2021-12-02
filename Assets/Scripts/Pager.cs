@@ -30,7 +30,10 @@ public class Pager : Interactable
     {
         indicator.SetActive(false);
         if (!answered)
+        {
+            src.Stop();
             LevelManager.Instance.GameOver("Alarm tripped: Criminal disconnected from the call");
+        }
         enabled = false;
     }
 
