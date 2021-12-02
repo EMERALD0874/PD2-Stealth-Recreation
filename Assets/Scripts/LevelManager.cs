@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour
     float mouseSens;
     public bool gameOver;
     string reason;
+    public List<Vector3> suspiciousObjects;
     
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class LevelManager : MonoBehaviour
         gameOver = false;
         gameOverPanel.SetActive(false);
         reason = "ERR Unknown Reason";
+        suspiciousObjects = new List<Vector3>();
     }
 
     void Update()

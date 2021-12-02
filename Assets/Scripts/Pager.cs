@@ -29,7 +29,7 @@ public class Pager : Interactable
     public override void CancelHolding()
     {
         indicator.SetActive(false);
-        if (!answered)
+        if (!answered && !LevelManager.Instance.gameOver)
         {
             src.Stop();
             LevelManager.Instance.GameOver("Alarm tripped: Criminal disconnected from the call");

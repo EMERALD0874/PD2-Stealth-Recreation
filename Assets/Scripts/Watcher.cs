@@ -72,6 +72,11 @@ public class Watcher : MonoBehaviour
                 indicator.SetActive(false);
         }
 
+        if (CanSeeSuspiciousObject())
+        {
+            InstantAlert();
+        }
+
         sus = Mathf.Clamp(sus, 0f, 1f);
         detection.UpdateSuspicion(sus);
 
@@ -111,6 +116,21 @@ public class Watcher : MonoBehaviour
         return false;
     }
 
+    bool CanSeeSuspiciousObject()
+    {
+        foreach (Vector3 v in LevelManager.Instance.suspiciousObjects)
+            if (Vector3.Distance(transform.position, v) < viewDistance)
+            {
+                Vector3 dirToPlayer = (v - transform.position).normalized;
+                float angle = Vector3.Angle(transform.forward, dirToPlayer);
+                if (angle < viewAngle / 2f && !Physics.Linecast(transform.position, v, mask))
+                {
+                    return true;
+                }
+            }
+        return false;
+    }
+
     public void InstantAlert()
     {
         sus = 100f;
@@ -120,6 +140,7 @@ public class Watcher : MonoBehaviour
     {
         sus = 0f;
         indicator.SetActive(false);
+        LevelManager.Instance.suspiciousObjects.Add(this.transform.position);
         Destroy(this);
     }
 
@@ -140,7 +161,8 @@ public class Watcher : MonoBehaviour
         yield return new WaitForSeconds(3f);
         // GG you lost
         indicator.SetActive(false);
-        LevelManager.Instance.GameOver("Alarm tripped: " + type + " detected " + reason);
+        if (!LevelManager.Instance.gameOver)
+            LevelManager.Instance.GameOver("Alarm tripped: " + type + " detected " + reason);
         yield return null;
     }
 }
