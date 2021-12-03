@@ -7,6 +7,7 @@ public class Pager : Interactable
     [SerializeField] DeathManager dm;
     [SerializeField] AudioClip[] pagerResponses;
     [SerializeField] AudioClip[] controlResponses;
+    [SerializeField] AudioClip feedback;
     [SerializeField] GameObject indicator;
 
     AudioSource src;
@@ -48,6 +49,7 @@ public class Pager : Interactable
 
     public override void Interact()
     {
+        src.Stop();
         AudioClip response = controlResponses[Random.Range(0, controlResponses.Length)];
         src.clip = response;
         src.spatialBlend = 1f;
@@ -58,12 +60,22 @@ public class Pager : Interactable
 
     public override void StartHolding()
     {
+        StartCoroutine(PagerResponse());
+        dm.isAnswering = true;
+
+        indicator.SetActive(false);
+    }
+
+    IEnumerator PagerResponse()
+    {
         AudioClip response = pagerResponses[Random.Range(0, pagerResponses.Length)];
         src.clip = response;
         src.spatialBlend = 0f;
         src.Play();
-        dm.isAnswering = true;
-
-        indicator.SetActive(false);
+        yield return new WaitForSeconds(src.clip.length);
+        src.clip = feedback;
+        src.spatialBlend = 1f;
+        src.Play();
+        yield return null;
     }
 }

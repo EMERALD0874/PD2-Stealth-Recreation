@@ -5,6 +5,7 @@ using UnityEngine;
 public class LightSwitch : Interactable
 {
     [SerializeField] Light m_Light;
+    [SerializeField] AudioClip snip;
 
     bool isOn;
 
@@ -32,6 +33,8 @@ public class LightSwitch : Interactable
     {
         isOn = !isOn;
         UpdateLight();
+
+        AudioSource.PlayClipAtPoint(snip, transform.position, 1f);
 
         Destroy(this);
     }

@@ -58,6 +58,17 @@ public class LevelManager : MonoBehaviour
         gameOverText.text = reason;
     }
 
+    public void GameWon(string r)
+    {
+        reason = r;
+        gameOver = true;
+        StopPlayerMovement();
+
+        //alarm.Play();
+        gameOverPanel.SetActive(true);
+        gameOverText.text = reason;
+    }
+
     public void StartPlayerMovement()
     {
         if (gameOver)

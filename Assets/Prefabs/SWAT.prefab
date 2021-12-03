@@ -786,6 +786,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 47a4239da681c3548b2d068f519b27d1, type: 3}
   - {fileID: 8300000, guid: 985df58d8c44d9e40a4c963ef6f4ecaa, type: 3}
   - {fileID: 8300000, guid: 82f430c044b7d6a499c717bc22f88c1c, type: 3}
+  feedback: {fileID: 8300000, guid: 3f4260a6a1868da41a495d4943cbc0ab, type: 3}
   indicator: {fileID: 1943398361}
 --- !u!1 &5607629692186074956
 GameObject:
