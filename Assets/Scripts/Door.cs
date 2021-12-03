@@ -6,17 +6,24 @@ public class Door : Interactable
 {
     [SerializeField] Animator anim;
 
+    AudioSource src;
+
+    private void Start()
+    {
+        src = GetComponent<AudioSource>();
+    }
+
     public override float TimeNeeded
     {
         get
         {
-            return 2f;
+            return 3f;
         }
     }
 
     public override void CancelHolding()
     {
-        
+        src.Stop();
     }
 
     public override string GetDescription()
@@ -32,6 +39,6 @@ public class Door : Interactable
 
     public override void StartHolding()
     {
-        
+        src.Play();
     }
 }

@@ -15,6 +15,10 @@ public class Pager : Interactable
     private void Start()
     {
         src = GetComponent<AudioSource>();
+    }
+
+    private void OnEnable()
+    {
         indicator.SetActive(true);
     }
 
