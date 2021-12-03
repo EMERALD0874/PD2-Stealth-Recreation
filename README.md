@@ -1,6 +1,4 @@
 # PD2-Stealth-Recreation
-
-## Overview
 A recreation of detection in PAYDAY 2's stealth.
 
 ## Controls
