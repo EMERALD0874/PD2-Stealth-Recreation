@@ -10,6 +10,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] TextMeshProUGUI prompt;
     [SerializeField] GameObject progressUI;
     [SerializeField] Image progress;
+    [SerializeField] Animator gunAnimator;
 
     MouseLook mouseLook;
     Camera cam;
@@ -71,6 +72,7 @@ public class PlayerInteraction : MonoBehaviour
                     {
                         i.StartHolding();
                         LevelManager.Instance.StopPlayerMovement();
+                        gunAnimator.Play("GunDown");
                     }
 
                     // Increase time
@@ -82,6 +84,7 @@ public class PlayerInteraction : MonoBehaviour
                         i.Interact();
                         i.ResetHoldTime();
                         LevelManager.Instance.StartPlayerMovement();
+                        gunAnimator.Play("GunUp");
                     }
                 }
                 else
@@ -90,6 +93,7 @@ public class PlayerInteraction : MonoBehaviour
                     {
                         i.CancelHolding();
                         LevelManager.Instance.StartPlayerMovement();
+                        gunAnimator.Play("GunUp");
                     }
                     i.ResetHoldTime();
                 }

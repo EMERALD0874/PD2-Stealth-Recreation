@@ -6177,6 +6177,7 @@ GameObject:
   - component: {fileID: 245024801}
   - component: {fileID: 245024802}
   - component: {fileID: 245024803}
+  - component: {fileID: 245024804}
   m_Layer: 9
   m_Name: Gun
   m_TagString: Untagged
@@ -6319,6 +6320,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &245024804
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245024800}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e88c45026d5775245a6d93164479d13c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &335383747
 GameObject:
   m_ObjectHideFlags: 0
@@ -8195,6 +8215,7 @@ MonoBehaviour:
   prompt: {fileID: 1610803846}
   progressUI: {fileID: 1635911119}
   progress: {fileID: 564589676}
+  gunAnimator: {fileID: 245024804}
 --- !u!1 &972909551
 GameObject:
   m_ObjectHideFlags: 0
