@@ -19,4 +19,4 @@ Simon Viklund - Razormind, the song played throughout the recreation.
 OVERKILL Software - The creators of PAYDAY 2. HUD inspiration/elements, Dallas voice lines, guard voice lines, and some pager sound effects.  
 
 ## Missing Files
-Assets/Mixamo/Ch15_nonPBR.fbx - Can be downloaded from Mixamo. Not included due to large file size.  
+Assets/Mixamo/Ch15_nonPBR.fbx - Can be downloaded from Mixamo (Swat Guy). Not included due to large file size.  
